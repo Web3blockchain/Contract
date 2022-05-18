@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract CAEMeta is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
-    bool public _isSaleActive = false;
+    bool public _isSaleActive = true;
     bool public _revealed = false;
 
     // Constants
