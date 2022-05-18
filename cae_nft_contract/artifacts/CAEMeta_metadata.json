@@ -158,6 +158,19 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "_addressToWhitelist",
+						"type": "address"
+					}
+				],
+				"name": "addUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "to",
 						"type": "address"
 					},
@@ -199,6 +212,19 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "callisWhitelisted",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -864,11 +890,11 @@
 			]
 		},
 		"cae_nft_contract/cae_nft_v.sol": {
-			"keccak256": "0xccd0a096842e561b22117e89df6f73728ef678382a600a2326f7c7c1e5ad041f",
+			"keccak256": "0x4e07fc8b4612ec1fc0757a23bc924468a2ff793a8c89b12739bcc0aa515ec281",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://afef3e66ea8416e005dce6c05db35d653d73fd1d4d69edee01c5256de644a7fa",
-				"dweb:/ipfs/QmcPMUJ75DqJYU1SV2qWFWqtkNLirq9U9yNYrcqwsFjj3k"
+				"bzz-raw://0996ad5f75fdbdbf730e2f469d09d15a9758626939060248d3e14f6bbfed7db3",
+				"dweb:/ipfs/QmTXgiwvoVg9vCxTwEiAH32E4BYV7ARvZUS5j7MVP8zwKs"
 			]
 		}
 	},

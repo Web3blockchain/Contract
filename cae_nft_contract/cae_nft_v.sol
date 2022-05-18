@@ -22,6 +22,8 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     string public notRevealedUri;
     string public baseExtension = ".json";
 
+
+    mapping(address => bool) whitelistedAddresses;
     mapping(uint256 => string) private _tokenURIs;
 
     constructor(string memory initBaseURI, string memory initNotRevealedUri)
@@ -36,6 +38,11 @@ contract CAEMeta is ERC721Enumerable, Ownable {
             totalSupply() + tokenQuantity <= MAX_SUPPLY,
             "Sale would exceed max supply"
         );
+        require(
+            callisWhitelisted(),
+            "you are not in whitelist"
+        );
+
         require(_isSaleActive, "Sale must be active to mint CAEMetas");
         require(
             balanceOf(msg.sender) + tokenQuantity <= maxBalance,
@@ -45,7 +52,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
             tokenQuantity * mintPrice <= msg.value,
             "Not enough ether sent"
         );
-        require(tokenQuantity <= maxMint, "Can only mint 1 tokens at a time");
+        require(tokenQuantity <= maxMint, "You have already mint");
 
         _mintCAEMeta(tokenQuantity);
     }
@@ -135,5 +142,24 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     function withdraw(address to) public onlyOwner {
         uint256 balance = address(this).balance;
         payable(to).transfer(balance);
+    }
+
+    //whitelist
+    modifier isWhitelisted(address _address) {
+      require(whitelistedAddresses[_address], "Whitelist: You need to be whitelisted");
+      _;
+    }
+
+    function addUser(address _addressToWhitelist) public onlyOwner {
+      whitelistedAddresses[_addressToWhitelist] = true;
+    }
+
+    // function verifyUser(address _whitelistedAddress) public view returns(bool) {
+    //   bool userIsWhitelisted = whitelistedAddresses[_whitelistedAddress];
+    //   return userIsWhitelisted;
+    // }
+
+    function callisWhitelisted() public view isWhitelisted(msg.sender) returns(bool){
+      return (true);
     }
 }
