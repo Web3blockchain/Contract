@@ -10,7 +10,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     bool public _isSaleActive = true;
-    bool public _revealed = false;
+    // bool public _revealed = false;
 
     // Constants
     uint256 public constant MAX_SUPPLY = 10;
@@ -27,15 +27,15 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     mapping(uint256 => string) private _tokenURIs;
 
     constructor(string memory initBaseURI, string memory initNotRevealedUri)
-        ERC721("CAE Meta", "NM")
+        ERC721("CAECAE Meta", "NM")
     {
         setBaseURI(initBaseURI);
         setNotRevealedURI(initNotRevealedUri);
     }
 
-    function mintCAEMeta(uint256 tokenQuantity) public payable {
+    function mintCAEMeta() public payable {
         require(
-            totalSupply() + tokenQuantity <= MAX_SUPPLY,
+            totalSupply() + 1 <= MAX_SUPPLY,
             "Sale would exceed max supply"
         );
         require(
@@ -44,17 +44,18 @@ contract CAEMeta is ERC721Enumerable, Ownable {
         );
 
         require(_isSaleActive, "Sale must be active to mint CAEMetas");
+        
         require(
-            balanceOf(msg.sender) + tokenQuantity <= maxBalance,
-            "Sale would exceed max balance"
+            balanceOf(msg.sender) + 1 <= maxBalance,
+            "You have already mint"
         );
+
         require(
-            tokenQuantity * mintPrice <= msg.value,
+            mintPrice <= msg.value,
             "Not enough ether sent"
         );
-        require(tokenQuantity <= maxMint, "You have already mint");
 
-        _mintCAEMeta(tokenQuantity);
+        _mintCAEMeta(1);
     }
 
     function _mintCAEMeta(uint256 tokenQuantity) internal {
@@ -78,9 +79,9 @@ contract CAEMeta is ERC721Enumerable, Ownable {
             "ERC721Metadata: URI query for nonexistent token"
         );
 
-        if (_revealed == false) {
-            return notRevealedUri;
-        }
+        // if (_revealed == false) {
+        //     return notRevealedUri;
+        // }
 
         string memory _tokenURI = _tokenURIs[tokenId];
         string memory base = _baseURI();
@@ -108,13 +109,13 @@ contract CAEMeta is ERC721Enumerable, Ownable {
         _isSaleActive = !_isSaleActive;
     }
 
-    function flipReveal() public onlyOwner {
-        _revealed = !_revealed;
-    }
+    // function flipReveal() public onlyOwner {
+    //     _revealed = !_revealed;
+    // }
 
-    function setMintPrice(uint256 _mintPrice) public onlyOwner {
-        mintPrice = _mintPrice;
-    }
+    // function setMintPrice(uint256 _mintPrice) public onlyOwner {
+    //     mintPrice = _mintPrice;
+    // }
 
     function setNotRevealedURI(string memory _notRevealedURI) public onlyOwner {
         notRevealedUri = _notRevealedURI;
@@ -146,20 +147,21 @@ contract CAEMeta is ERC721Enumerable, Ownable {
 
     //whitelist
     modifier isWhitelisted(address _address) {
-      require(whitelistedAddresses[_address], "Whitelist: You need to be whitelisted");
+        require(whitelistedAddresses[_address], "Whitelist: You need to be whitelisted");
       _;
     }
 
     function addUser(address _addressToWhitelist) public onlyOwner {
-      whitelistedAddresses[_addressToWhitelist] = true;
+        whitelistedAddresses[_addressToWhitelist] = true;
     }
 
-    // function verifyUser(address _whitelistedAddress) public view returns(bool) {
-    //   bool userIsWhitelisted = whitelistedAddresses[_whitelistedAddress];
-    //   return userIsWhitelisted;
-    // }
+    function verifyUser(address _whitelistedAddress) public view returns(bool) {
+      bool userIsWhitelisted = whitelistedAddresses[_whitelistedAddress];
+      return userIsWhitelisted;
+    }
 
     function callisWhitelisted() public view isWhitelisted(msg.sender) returns(bool){
       return (true);
     }
+
 }

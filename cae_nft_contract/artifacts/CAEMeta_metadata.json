@@ -142,19 +142,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "_revealed",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -228,13 +215,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "flipReveal",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -314,13 +294,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenQuantity",
-						"type": "uint256"
-					}
-				],
+				"inputs": [],
 				"name": "mintCAEMeta",
 				"outputs": [],
 				"stateMutability": "payable",
@@ -528,19 +502,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_mintPrice",
-						"type": "uint256"
-					}
-				],
-				"name": "setMintPrice",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "string",
 						"name": "_notRevealedURI",
 						"type": "string"
@@ -692,6 +653,25 @@
 				"name": "transferOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_whitelistedAddress",
+						"type": "address"
+					}
+				],
+				"name": "verifyUser",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -890,11 +870,11 @@
 			]
 		},
 		"cae_nft_contract/cae_nft_v.sol": {
-			"keccak256": "0x4e07fc8b4612ec1fc0757a23bc924468a2ff793a8c89b12739bcc0aa515ec281",
+			"keccak256": "0x7afd629a9e9369b7fd15d4393ca819a5b6ae66008b681c56743e1032b3ba72bb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0996ad5f75fdbdbf730e2f469d09d15a9758626939060248d3e14f6bbfed7db3",
-				"dweb:/ipfs/QmTXgiwvoVg9vCxTwEiAH32E4BYV7ARvZUS5j7MVP8zwKs"
+				"bzz-raw://bfcf4d59977751b744f28e2fc41a9e90653634a3f2056e7f25458c84909e459c",
+				"dweb:/ipfs/QmeF1H36H2JTLkgEqJsBtcUNmxZ6rWqLBhTpFC22B4Ggwx"
 			]
 		}
 	},
