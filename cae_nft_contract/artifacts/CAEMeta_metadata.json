@@ -870,11 +870,11 @@
 			]
 		},
 		"cae_nft_contract/cae_nft_v.sol": {
-			"keccak256": "0xb02f3928868a752863c54ce27b3c908d98949ba23f5c509b7fc13f9836bd6d09",
+			"keccak256": "0x0084fe373cb0c153078e31c21af4fba289e1892bbb6189b785fc6da88f3be120",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f9e19016021c1d74933edbae668cc983b46156d3d1806721e38d6d7565c7f7f0",
-				"dweb:/ipfs/QmYx3KuF27NkUS5Bof6M553fCZEGDc1i46svoyK8LwCPSQ"
+				"bzz-raw://01b1b6cd17665c6eb765f13ed2e1d26beef630ddbcaaac8950e0363432cdc59b",
+				"dweb:/ipfs/QmR9hdoB4w9YJxAyygxLAAFUbBSxMx67CYYaubE8tTJV3q"
 			]
 		}
 	},

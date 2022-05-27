@@ -25,7 +25,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
 
     mapping(address => bool) whitelistedAddresses;
     mapping(uint256 => string) private _tokenURIs;
-    // mapping(address => string) whitelistt;
+    mapping(address => uint256) whitelistt;
 
     constructor(string memory initBaseURI, string memory initNotRevealedUri)
         ERC721("CAECAE Meta", "NM")
@@ -156,6 +156,10 @@ contract CAEMeta is ERC721Enumerable, Ownable {
         whitelistedAddresses[_addressToWhitelist] = true;
     }
 
+    // function addUser2(address _addressToWhitelist, uint256 _ipfs) public onlyOwner {
+    //     whitelistt[_addressToWhitelist] = _ipfs;
+    // }
+
     function verifyUser(address _whitelistedAddress) public view returns(bool) {
       bool userIsWhitelisted = whitelistedAddresses[_whitelistedAddress];
       return userIsWhitelisted;
@@ -170,11 +174,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     //     _;
     // }
 
-    // function checkwhitelist() public view returns(bool){
-    //    bool ton = false;
-    //    if(bytes(whitelistt[msg.sender]).length != 0){
-    //         ton = true;
-    //    }
-    //     return ton;
+    // function checkwhitelist() public view CheckisnotinWhitelist(msg.sender) returns(bool){
+    //    return (true);
     // }
 }
