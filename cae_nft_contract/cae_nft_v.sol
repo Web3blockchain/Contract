@@ -22,13 +22,11 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     string public notRevealedUri;
     string public baseExtension = ".json";
 
-
-    mapping(address => bool) whitelistedAddresses;
     mapping(uint256 => string) private _tokenURIs;
     mapping(address => uint256) whitelistt;
 
     constructor(string memory initBaseURI, string memory initNotRevealedUri)
-        ERC721("CAECAE Meta", "NM")
+        ERC721("CAECAE vv3 Meta", "JTJT")
     {
         setBaseURI(initBaseURI);
         setNotRevealedURI(initNotRevealedUri);
@@ -40,7 +38,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
             "Sale would exceed max supply"
         );
         require(
-            callisWhitelisted(),
+            checkwhitelist(),
             "you are not in whitelist"
         );
 
@@ -60,10 +58,15 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     }
 
     function _mintCAEMeta(uint256 tokenQuantity) internal {
+        // for (uint256 i = 0; i < tokenQuantity; i++) {
+        //     uint256 mintIndex = totalSupply();
+        //     if (totalSupply() < MAX_SUPPLY) {
+        //         _safeMint(msg.sender, mintIndex);
+        //     }
+        // }
         for (uint256 i = 0; i < tokenQuantity; i++) {
-            uint256 mintIndex = totalSupply();
             if (totalSupply() < MAX_SUPPLY) {
-                _safeMint(msg.sender, mintIndex);
+                _safeMint(msg.sender, whitelistt[msg.sender]);
             }
         }
     }
@@ -114,10 +117,6 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     //     _revealed = !_revealed;
     // }
 
-    // function setMintPrice(uint256 _mintPrice) public onlyOwner {
-    //     mintPrice = _mintPrice;
-    // }
-
     function setNotRevealedURI(string memory _notRevealedURI) public onlyOwner {
         notRevealedUri = _notRevealedURI;
     }
@@ -133,48 +132,46 @@ contract CAEMeta is ERC721Enumerable, Ownable {
         baseExtension = _newBaseExtension;
     }
 
-    function setMaxBalance(uint256 _maxBalance) public onlyOwner {
-        maxBalance = _maxBalance;
-    }
-
-    function setMaxMint(uint256 _maxMint) public onlyOwner {
-        maxMint = _maxMint;
-    }
-
     function withdraw(address to) public onlyOwner {
         uint256 balance = address(this).balance;
         payable(to).transfer(balance);
     }
 
     //whitelist
-    modifier isWhitelisted(address _address) {
-        require(whitelistedAddresses[_address], "Whitelist: You need to be whitelisted");
-      _;
+    function addUser2(address _addressToWhitelist, uint256 s_todenid) public onlyOwner {
+        whitelistt[_addressToWhitelist] = s_todenid;
     }
 
-    function addUser(address _addressToWhitelist) public onlyOwner {
-        whitelistedAddresses[_addressToWhitelist] = true;
+    modifier CheckisnotinWhitelist(address _address){
+        require(whitelistt[msg.sender] != 0, "you are not in whitelisted");
+        _;
     }
 
-    // function addUser2(address _addressToWhitelist, uint256 _ipfs) public onlyOwner {
-    //     whitelistt[_addressToWhitelist] = _ipfs;
+    function checkwhitelist() public view CheckisnotinWhitelist(msg.sender) returns(bool){
+       return (true);
+    }
+
+    function verifyUser(address _whitelistedAddress) public view returns(uint256) {
+      uint256 s_id = whitelistt[_whitelistedAddress];
+      return s_id;
+
+
+    // modifier isWhitelisted(address _address) {
+    //     require(whitelistedAddresses[_address], "Whitelist: You need to be whitelisted");
+    //   _;
     // }
 
-    function verifyUser(address _whitelistedAddress) public view returns(bool) {
-      bool userIsWhitelisted = whitelistedAddresses[_whitelistedAddress];
-      return userIsWhitelisted;
-    }
-
-    function callisWhitelisted() public view isWhitelisted(msg.sender) returns(bool){
-      return (true);
-    }
-
-    // modifier CheckisnotinWhitelist(address _address){
-    //     require(bytes(whitelistt[msg.sender]).length != 0, "you are not in whitelisted");
-    //     _;
+    // function addUser(address _addressToWhitelist) public onlyOwner {
+    //     whitelistedAddresses[_addressToWhitelist] = true;
     // }
 
-    // function checkwhitelist() public view CheckisnotinWhitelist(msg.sender) returns(bool){
-    //    return (true);
+    // function verifyUser(address _whitelistedAddress) public view returns(bool) {
+    //   bool userIsWhitelisted = whitelistedAddresses[_whitelistedAddress];
+    //   return userIsWhitelisted;
     // }
+
+    // function callisWhitelisted() public view isWhitelisted(msg.sender) returns(bool){
+    //   return (true);
+    // }
+    }
 }

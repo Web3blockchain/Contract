@@ -147,9 +147,14 @@
 						"internalType": "address",
 						"name": "_addressToWhitelist",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "s_todenid",
+						"type": "uint256"
 					}
 				],
-				"name": "addUser",
+				"name": "addUser2",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -206,7 +211,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "callisWhitelisted",
+				"name": "checkwhitelist",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -476,32 +481,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_maxBalance",
-						"type": "uint256"
-					}
-				],
-				"name": "setMaxBalance",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_maxMint",
-						"type": "uint256"
-					}
-				],
-				"name": "setMaxMint",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "string",
 						"name": "_notRevealedURI",
 						"type": "string"
@@ -666,9 +645,9 @@
 				"name": "verifyUser",
 				"outputs": [
 					{
-						"internalType": "bool",
+						"internalType": "uint256",
 						"name": "",
-						"type": "bool"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -870,11 +849,11 @@
 			]
 		},
 		"cae_nft_contract/cae_nft_v.sol": {
-			"keccak256": "0x0084fe373cb0c153078e31c21af4fba289e1892bbb6189b785fc6da88f3be120",
+			"keccak256": "0xed204598ae90031953c2a8247060a67e46218c70d7af6db6e173bc892012d1a8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://01b1b6cd17665c6eb765f13ed2e1d26beef630ddbcaaac8950e0363432cdc59b",
-				"dweb:/ipfs/QmR9hdoB4w9YJxAyygxLAAFUbBSxMx67CYYaubE8tTJV3q"
+				"bzz-raw://6a6abba476a62011569dab9d2d8fd7a89021e1a8b09869305680e2d4ee437083",
+				"dweb:/ipfs/QmTdFQPSVeJCkPB44gMY9XCgHzQDVZoKKUViSDKK9x9Fjh"
 			]
 		}
 	},
