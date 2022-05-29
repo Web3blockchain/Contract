@@ -1,5 +1,31 @@
 // Contract based on https://docs.openzeppelin.com/contracts/3.x/erc721
 // SPDX-License-Identifier: MIT
+
+ /*-------------------------------------------------------------------------   
+          _____                   _____                   _____          
+         /\    \                 /\    \                 /\    \         
+        /::\    \               /::\    \               /::\    \        
+       /::::\    \             /::::\    \             /::::\    \       
+      /::::::\    \           /::::::\    \           /::::::\    \      
+     /:::/\:::\    \         /:::/\:::\    \         /:::/\:::\    \     
+    /:::/  \:::\    \       /:::/__\:::\    \       /:::/__\:::\    \    
+   /:::/    \:::\    \     /::::\   \:::\    \     /::::\   \:::\    \   
+  /:::/    / \:::\    \   /::::::\   \:::\    \   /::::::\   \:::\    \  
+ /:::/    /   \:::\    \ /:::/\:::\   \:::\    \ /:::/\:::\   \:::\    \ 
+/:::/____/     \:::\____/:::/  \:::\   \:::\____/:::/__\:::\   \:::\____\
+\:::\    \      \::/    \::/    \:::\  /:::/    \:::\   \:::\   \::/    /
+ \:::\    \      \/____/ \/____/ \:::\/:::/    / \:::\   \:::\   \/____/ 
+  \:::\    \                      \::::::/    /   \:::\   \:::\    \     
+   \:::\    \                      \::::/    /     \:::\   \:::\____\    
+    \:::\    \                     /:::/    /       \:::\   \::/    /    
+     \:::\    \                   /:::/    /         \:::\   \/____/     
+      \:::\    \                 /:::/    /           \:::\    \         
+       \:::\____\               /:::/    /             \:::\____\        
+        \::/    /               \::/    /               \::/    /        
+         \/____/                 \/____/                 \/____/         
+                                                                     
+-------------------------------------------------------------------------------- */
+                                                                    
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
@@ -13,7 +39,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     // bool public _revealed = false;
 
     // Constants
-    uint256 public constant MAX_SUPPLY = 10;
+    // uint256 public constant MAX_SUPPLY = 10;
     uint256 public mintPrice = 0 ether;
     uint256 public maxBalance = 1;
     uint256 public maxMint = 1;
@@ -33,10 +59,10 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     }
 
     function mintCAEMeta() public payable {
-        require(
-            totalSupply() + 1 <= MAX_SUPPLY,
-            "Sale would exceed max supply"
-        );
+        // require(
+        //     totalSupply() + 1 <= MAX_SUPPLY,
+        //     "Sale would exceed max supply"
+        // );
         require(
             checkwhitelist(),
             "you are not in whitelist"
@@ -51,7 +77,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
 
         require(
             mintPrice <= msg.value,
-            "Not enough ether sent"
+            "Not enough Matic sent"
         );
 
         _mintCAEMeta(1);
@@ -65,9 +91,9 @@ contract CAEMeta is ERC721Enumerable, Ownable {
         //     }
         // }
         for (uint256 i = 0; i < tokenQuantity; i++) {
-            if (totalSupply() < MAX_SUPPLY) {
+            // if (totalSupply() < MAX_SUPPLY) {
                 _safeMint(msg.sender, whitelistt[msg.sender]);
-            }
+            // }
         }
     }
 
@@ -138,7 +164,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     }
 
     //whitelist
-    function addUser2(address _addressToWhitelist, uint256 s_todenid) public onlyOwner {
+    function addUser(address _addressToWhitelist, uint256 s_todenid) public onlyOwner {
         whitelistt[_addressToWhitelist] = s_todenid;
     }
 
@@ -155,23 +181,5 @@ contract CAEMeta is ERC721Enumerable, Ownable {
       uint256 s_id = whitelistt[_whitelistedAddress];
       return s_id;
 
-
-    // modifier isWhitelisted(address _address) {
-    //     require(whitelistedAddresses[_address], "Whitelist: You need to be whitelisted");
-    //   _;
-    // }
-
-    // function addUser(address _addressToWhitelist) public onlyOwner {
-    //     whitelistedAddresses[_addressToWhitelist] = true;
-    // }
-
-    // function verifyUser(address _whitelistedAddress) public view returns(bool) {
-    //   bool userIsWhitelisted = whitelistedAddresses[_whitelistedAddress];
-    //   return userIsWhitelisted;
-    // }
-
-    // function callisWhitelisted() public view isWhitelisted(msg.sender) returns(bool){
-    //   return (true);
-    // }
     }
 }

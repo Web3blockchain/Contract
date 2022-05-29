@@ -117,19 +117,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "MAX_SUPPLY",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "_isSaleActive",
 				"outputs": [
 					{
@@ -154,7 +141,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "addUser2",
+				"name": "addUser",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -849,11 +836,11 @@
 			]
 		},
 		"cae_nft_contract/cae_nft_v.sol": {
-			"keccak256": "0xed204598ae90031953c2a8247060a67e46218c70d7af6db6e173bc892012d1a8",
+			"keccak256": "0x0695b46eb769b960cc9d9879b342eb8fe6345c4522f74b9b2e06ce3da45c091e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6a6abba476a62011569dab9d2d8fd7a89021e1a8b09869305680e2d4ee437083",
-				"dweb:/ipfs/QmTdFQPSVeJCkPB44gMY9XCgHzQDVZoKKUViSDKK9x9Fjh"
+				"bzz-raw://d43bb1f4fcdf2e5c8b168f7addfd903e9f76a4d0b78be7fd328fc28cc2378f22",
+				"dweb:/ipfs/QmeuJ8W3f2YB29Dzyig3F2wuGZEjebSquZ8f3BgZ2Lnj7s"
 			]
 		}
 	},
