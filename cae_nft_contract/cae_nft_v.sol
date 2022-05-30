@@ -52,7 +52,7 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     mapping(address => uint256) whitelistt;
 
     constructor(string memory initBaseURI, string memory initNotRevealedUri)
-        ERC721("CAECAE vv3 Meta", "JTJT")
+        ERC721("JTJT vv3 Meta", "JTJT")
     {
         setBaseURI(initBaseURI);
         setNotRevealedURI(initNotRevealedUri);
