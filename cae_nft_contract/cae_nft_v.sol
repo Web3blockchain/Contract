@@ -36,10 +36,8 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     bool public _isSaleActive = true;
-    // bool public _revealed = false;
 
     // Constants
-    // uint256 public constant MAX_SUPPLY = 10;
     uint256 public mintPrice = 0 ether;
     uint256 public maxBalance = 1;
     uint256 public maxMint = 1;
@@ -52,17 +50,13 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     mapping(address => uint256) whitelistt;
 
     constructor(string memory initBaseURI, string memory initNotRevealedUri)
-        ERC721("JTJT vv3 Meta", "JTJT")
+        ERC721("CAE certificate test", "JTJT")
     {
         setBaseURI(initBaseURI);
         setNotRevealedURI(initNotRevealedUri);
     }
 
     function mintCAEMeta() public payable {
-        // require(
-        //     totalSupply() + 1 <= MAX_SUPPLY,
-        //     "Sale would exceed max supply"
-        // );
         require(
             checkwhitelist(),
             "you are not in whitelist"
@@ -84,16 +78,8 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     }
 
     function _mintCAEMeta(uint256 tokenQuantity) internal {
-        // for (uint256 i = 0; i < tokenQuantity; i++) {
-        //     uint256 mintIndex = totalSupply();
-        //     if (totalSupply() < MAX_SUPPLY) {
-        //         _safeMint(msg.sender, mintIndex);
-        //     }
-        // }
         for (uint256 i = 0; i < tokenQuantity; i++) {
-            // if (totalSupply() < MAX_SUPPLY) {
                 _safeMint(msg.sender, whitelistt[msg.sender]);
-            // }
         }
     }
 
@@ -109,10 +95,6 @@ contract CAEMeta is ERC721Enumerable, Ownable {
             "ERC721Metadata: URI query for nonexistent token"
         );
 
-        // if (_revealed == false) {
-        //     return notRevealedUri;
-        // }
-
         string memory _tokenURI = _tokenURIs[tokenId];
         string memory base = _baseURI();
 
@@ -120,11 +102,11 @@ contract CAEMeta is ERC721Enumerable, Ownable {
         if (bytes(base).length == 0) {
             return _tokenURI;
         }
-        // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
+
         if (bytes(_tokenURI).length > 0) {
             return string(abi.encodePacked(base, _tokenURI));
         }
-        // If there is a baseURI but no tokenURI, concatenate the tokenID to the baseURI.
+      
         return
             string(abi.encodePacked(base, tokenId.toString(), baseExtension));
     }
@@ -138,10 +120,6 @@ contract CAEMeta is ERC721Enumerable, Ownable {
     function flipSaleActive() public onlyOwner {
         _isSaleActive = !_isSaleActive;
     }
-
-    // function flipReveal() public onlyOwner {
-    //     _revealed = !_revealed;
-    // }
 
     function setNotRevealedURI(string memory _notRevealedURI) public onlyOwner {
         notRevealedUri = _notRevealedURI;
